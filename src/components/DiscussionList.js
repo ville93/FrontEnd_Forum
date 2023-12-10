@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { List, ListItem, Typography } from '@mui/material';
+import { List, ListItem, Typography, Paper } from '@mui/material';
 
 const DiscussionList = ({ endpoint }) => {
   const [discussions, setDiscussions] = useState([]);
@@ -16,7 +16,10 @@ const DiscussionList = ({ endpoint }) => {
       <List>
         {discussions.map(discussion => (
           <ListItem key={discussion.id}>
-            <Typography>{discussion.title}</Typography>
+            <Paper style={{ marginTop: '10px', padding: '10px', background: '#313331', width: '100%' }}>
+              <Typography style={{ fontWeight: 'bold', color: '#4CAF50'}}>{discussion.title}</Typography>
+              <Typography>{discussion.messages[0].content}</Typography>
+            </Paper>
           </ListItem>
         ))}
       </List>

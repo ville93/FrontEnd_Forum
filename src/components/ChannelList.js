@@ -1,17 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { List, ListItem, Typography, TextField, Paper } from '@mui/material';
+import { List, ListItem, Typography, TextField, Paper, Link, Box } from '@mui/material';
 
 const ChannelList = ({ onSearch }) => {
   const [channels, setChannels] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     fetchChannels();
   }, []); 
-
-  useEffect(() => {
-    onSearch(searchTerm);
-  }, [searchTerm, onSearch]);
 
   const fetchChannels = () => {
     fetch('https://localhost:5001/api/Channel')
@@ -20,26 +15,18 @@ const ChannelList = ({ onSearch }) => {
       .catch(error => console.error('Error fetching channels:', error));
   };
 
-  const handleSearchChange = (event) => {
-    const term = event.target.value;
-    setSearchTerm(term);
-    onSearch(term);
+  const handleStartDiscussion = () => {
+    window.location.href = '/channel';
   };
 
   return (
-    <Paper elevation={3} style={{ padding: '10px', backgroundColor: '#333333', color: '#ffffff' }}>
-      <TextField
-        label="Search Channels"
-        variant="outlined"
-        fullWidth
-        margin="normal"
-        value={searchTerm}
-        onChange={handleSearchChange}
-      />
+    <Paper elevation={3} style={{ padding: '10px', background: '#000000', height: '100%', overflowY: 'auto' }}>
       <List>
         {channels.map((channel) => (
-          <ListItem key={channel.id} onClick={() => onSearch(channel.name)}>
-            <Typography>{channel.name}</Typography>
+          <ListItem key={channel.id}>
+            <Link component="button" variant="body1" onClick={handleStartDiscussion}>
+              <Typography>{channel.name}</Typography>
+            </Link>
           </ListItem>
         ))}
       </List>
