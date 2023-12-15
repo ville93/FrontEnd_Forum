@@ -29,7 +29,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/new-discussion" element={<NewDiscussion />} />
-          <Route path="/channel" element={<ChannelPage />} />
+          <Route path="/channel/:channelId" element={<ChannelPage/>} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>

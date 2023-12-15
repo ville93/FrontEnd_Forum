@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { List, ListItem, Typography, TextField, Paper, Link, Box } from '@mui/material';
+import { List, ListItem, Typography, Paper, Link } from '@mui/material';
 
-const ChannelList = ({ onSearch }) => {
+const ChannelList = ({ onChannelsFetched }) => {
   const [channels, setChannels] = useState([]);
+  const [selectedChannel, setSelectedChannel] = useState([]);
 
   useEffect(() => {
     fetchChannels();
@@ -11,20 +12,25 @@ const ChannelList = ({ onSearch }) => {
   const fetchChannels = () => {
     fetch('https://localhost:5001/api/Channel')
       .then(response => response.json())
-      .then(data => setChannels(data))
+      .then(data => {
+        setChannels(data);
+        onChannelsFetched(data); // Päivitä channelsForDiscussion Home.js:ssä
+      })
       .catch(error => console.error('Error fetching channels:', error));
   };
 
-  const handleStartDiscussion = () => {
-    window.location.href = '/channel';
+  const handleStartDiscussion = (channelId) => {
+    console.log(channelId)
+    window.location.href = `/channel/${channelId}`;
   };
 
   return (
     <Paper elevation={3} style={{ padding: '10px', background: '#000000', height: '100%', overflowY: 'auto' }}>
+      <Typography>CHANNELS</Typography>
       <List>
         {channels.map((channel) => (
           <ListItem key={channel.id}>
-            <Link component="button" variant="body1" onClick={handleStartDiscussion}>
+            <Link component="button" variant="body1" onClick={() => handleStartDiscussion(channel.id)}>
               <Typography>{channel.name}</Typography>
             </Link>
           </ListItem>

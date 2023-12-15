@@ -1,7 +1,7 @@
-// NewDiscussion.js
 import React, { useState } from 'react';
+import Dialog from '@mui/material/Dialog';
+import DialogContent from '@mui/material/DialogContent';
 import TextField from '@mui/material/TextField';
-import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
@@ -24,18 +24,18 @@ const NewDiscussion = ({ channels, onClose }) => {
   };
 
   return (
-    <Container maxWidth={false}>
-      {/* Sulje-nappi */}
+    <Dialog open={true} onClose={onClose}> 
+      <DialogContent>
       <Button
         color="primary"
         onClick={onClose}
         style={{ position: 'absolute', top: 0, right: 0 }}
       >
+        Close
       </Button>
 
-      {/* Lomakkeen muut osat */}
       <TextField
-        label="Otsikko"
+        label="Title"
         fullWidth
         variant="outlined"
         style={{ marginBottom: '16px', marginTop: '16px' }}
@@ -50,7 +50,7 @@ const NewDiscussion = ({ channels, onClose }) => {
           onChange={handleChannelChange}
         >
           <MenuItem value="">
-            <em>Ei mikään</em>
+            <em>None</em>
           </MenuItem>
           {channels.map((ch) => (
             <MenuItem key={ch.id} value={ch.id}>
@@ -60,7 +60,7 @@ const NewDiscussion = ({ channels, onClose }) => {
         </Select>
       </FormControl>
       <TextField
-        label="Viesti"
+        label="Message"
         multiline
         rows={8}
         fullWidth
@@ -68,9 +68,10 @@ const NewDiscussion = ({ channels, onClose }) => {
         style={{ marginBottom: '16px' }}
       />
       <Button variant="contained" color="primary" onClick={handleSubmit} style={{ marginTop: '16px' }}>
-        Lähetä
+        Submit
       </Button>
-    </Container>
+      </DialogContent>
+    </Dialog>
   );
 };
 

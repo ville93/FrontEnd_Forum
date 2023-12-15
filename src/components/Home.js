@@ -1,24 +1,22 @@
-// Home.js
 import React, { useState } from 'react';
 import { Container, Box, Grid, Typography, Tabs, Tab, Paper } from '@mui/material';
-import SearchBox from './SearchBox';
 import ChannelList from './ChannelList';
 import DiscussionList from './DiscussionList';
 import StartDiscussionButton from './StartDiscussionButton';
-import NewDiscussion from './NewDiscussion';  // Import the NewDiscussion component
-import { Link } from 'react-router-dom';
+import NewDiscussion from './NewDiscussion'; 
 
 const Home = () => {
   const [tabValue, setTabValue] = useState(0);
   const [channelsForDiscussion, setChannelsForDiscussion] = useState([]);
-  const [isPopupOpen, setPopupOpen] = useState(false);  // State to manage popup visibility
+  const [isPopupOpen, setPopupOpen] = useState(false);  
 
   const handleChange = (event, newValue) => {
     setTabValue(newValue);
   };
 
   const handleStartDiscussion = () => {
-    setPopupOpen(true);  // Open the popup
+    console.log('pop up call')
+    setPopupOpen(true);  
   };
 
   const handleChannelsForDiscussionFetched = (channels) => {
@@ -26,7 +24,7 @@ const Home = () => {
   };
 
   const handleClosePopup = () => {
-    setPopupOpen(false);  // Close the popup
+    setPopupOpen(false);  
   };
 
   return (
@@ -45,7 +43,6 @@ const Home = () => {
 
           <Grid item xs={12} md={9}>
             <Box>
-              {/* Open the popup when the button is clicked */}
               <StartDiscussionButton onClick={handleStartDiscussion} />
             </Box>
 
@@ -76,7 +73,6 @@ const Home = () => {
         </Grid>
       </Box>
 
-      {/* Render the NewDiscussion popup component */}
       {isPopupOpen && (
         <NewDiscussion
           channels={channelsForDiscussion}
