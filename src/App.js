@@ -5,6 +5,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import NewDiscussion from './components/NewDiscussion';
 import ChannelPage from './components/ChannelPage';
+import DiscussionsBySearch from './components/DiscussionsBySearch';
 
 const customTheme = createTheme({
   palette: {
@@ -30,6 +31,7 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/new-discussion" element={<NewDiscussion />} />
           <Route path="/channel/:channelId" element={<ChannelPage/>} />
+          <Route path="/search-results/:searchTerm" element={<DiscussionsBySearch/>}/>
         </Routes>
       </BrowserRouter>
     </ThemeProvider>

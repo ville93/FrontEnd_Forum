@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { List, ListItem, Typography, Paper, Link } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 const ChannelList = ({ onChannelsFetched }) => {
   const [channels, setChannels] = useState([]);
   const [selectedChannel, setSelectedChannel] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchChannels();
@@ -21,7 +23,7 @@ const ChannelList = ({ onChannelsFetched }) => {
 
   const handleStartDiscussion = (channelId) => {
     console.log(channelId)
-    window.location.href = `/channel/${channelId}`;
+    navigate(`/channel/${channelId}`);
   };
 
   return (
