@@ -18,7 +18,6 @@ const DiscussionList = ({ endpoint }) => {
           <ListItem key={discussion.id}>
             <Paper style={{ marginTop: '10px', padding: '10px', background: '#313331', width: '100%' }}>
               <Typography style={{ fontWeight: 'bold', color: '#4CAF50'}}>{discussion.title}</Typography>
-              <Typography>{discussion.messages[0].content}</Typography>
             </Paper>
           </ListItem>
         ))}
