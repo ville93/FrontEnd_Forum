@@ -61,7 +61,7 @@ const Home = () => {
               <Tab label="The Most Popular" />
             </Tabs>
 
-            <Paper elevation={3} style={{ marginTop: '10px', padding: '10px', background: '#000000' }}>
+            <Paper elevation={3} style={{ marginTop: '10px', padding: '0px', background: '#000000' }}>
               {tabValue === 0 && (
                 <div>
                   <DiscussionList endpoint="/api/Discussion/newest" />
