@@ -34,10 +34,10 @@ const DiscussionList = ({ endpoint }) => {
                   <Typography style={{ fontWeight: 'bold', color: '#ffffff' }}>{discussion.messages[0].content}</Typography>
                 </Grid>
                 <Grid item xs={2}>
-                  <Typography style={{ fontWeight: 'bold', color: '#ffffff' }}>12</Typography>
+                  <Typography style={{ fontWeight: 'bold', color: '#ffffff' }}>{discussion.answersCount}</Typography>
                 </Grid>
                 <Grid item xs={2}>
-                  <Typography style={{ fontWeight: 'bold', color: '#ffffff' }}>23.12.2023</Typography>
+                  <Typography style={{ fontWeight: 'bold', color: '#ffffff' }}>{formatDate(discussion.messages[0].time)}</Typography>
                 </Grid>
               </Grid>
             </Paper>
@@ -47,5 +47,10 @@ const DiscussionList = ({ endpoint }) => {
     </div>
   );
 };
+
+function formatDate(dateString) {
+  const options = { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+  return new Date(dateString).toLocaleDateString('fi-FI', options);
+}
 
 export default DiscussionList;
