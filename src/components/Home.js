@@ -4,8 +4,6 @@ import ChannelList from './ChannelList';
 import DiscussionList from './DiscussionList';
 import StartDiscussionButton from './StartDiscussionButton';
 import NewDiscussion from './NewDiscussion'; 
-import SearchBox from './SearchBox';
-import BaseLayout from './Header';
 
 const Home = () => {
   const [tabValue, setTabValue] = useState(0);
@@ -31,8 +29,6 @@ const Home = () => {
 
   return (
     <Container maxWidth={false} disableGutters>
-      <BaseLayout/>
-
       <Box mt={2}>
         <Grid container spacing={3}>
           <Grid item xs={12} md={3} style={{ display: 'flex', justifyContent: 'left' }}>
@@ -43,11 +39,6 @@ const Home = () => {
             <Grid container spacing={2} alignItems="center">
               <Grid item>
                 <StartDiscussionButton onClick={handleStartDiscussion} />
-              </Grid>
-              <Grid item>
-                <SearchBox 
-                  endpoint="/api/Channel"
-                />
               </Grid>
             </Grid>
 

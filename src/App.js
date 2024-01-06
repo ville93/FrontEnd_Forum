@@ -6,6 +6,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import NewDiscussion from './components/NewDiscussion';
 import ChannelPage from './components/ChannelPage';
 import DiscussionsBySearch from './components/DiscussionsBySearch';
+import Navbar from './components/Nabar';
 
 const customTheme = createTheme({
   palette: {
@@ -27,6 +28,7 @@ export default function App() {
     <ThemeProvider theme={customTheme}>
       <CssBaseline />
       <BrowserRouter>
+      <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/new-discussion" element={<NewDiscussion />} />

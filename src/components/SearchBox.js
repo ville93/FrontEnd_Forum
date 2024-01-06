@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { TextField, Alert, AlertTitle } from '@mui/material';
+import { Alert, Box, InputBase } from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
 import { useNavigate } from 'react-router-dom';
 
 const SearchBox = ({ endpoint }) => {
@@ -18,19 +19,26 @@ const SearchBox = ({ endpoint }) => {
 
   return (
     <div>
-      <TextField
-        label="Search"
-        variant="outlined"
-        fullWidth
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
-      />
+      <Box>
+        <div style={{ display: 'flex', alignItems: 'center', backgroundColor: 'rgba(255, 255, 255, 0.15)', borderRadius: 4 }}>
+          <div style={{ padding: 8 }}>
+            <SearchIcon style={{ color: 'white' }} />
+          </div>
+            <InputBase
+              placeholder="Search..."
+              style={{ color: 'white', padding: 8 }}
+              inputProps={{ 'aria-label': 'search' }}
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
+            />
+        </div>
+      </Box>
       {showAlert && (
-        <Alert variant="outlined" severity="error">
-          Search term is empty!
-        </Alert>
-      )}
+          <Alert variant="outlined" severity="error">
+            Search term is empty!
+          </Alert>
+        )}
     </div>
   );
 };

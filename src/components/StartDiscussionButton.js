@@ -10,7 +10,7 @@ const StartDiscussionButton = ({ onClick }) => {
     <Button
       variant="contained"
       color="primary"
-      style={{ marginBottom: '10px' }}
+      style={{ height: '40px'}}
       onClick={handleStartDiscussion}
     >
       Start Discussion
