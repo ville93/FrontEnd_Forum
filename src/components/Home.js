@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, Box, Grid, Typography, Tabs, Tab, Paper } from '@mui/material';
+import { Container, Box, Grid, Tabs, Tab, Paper } from '@mui/material';
 import ChannelList from './ChannelList';
 import DiscussionList from './DiscussionList';
 import StartDiscussionButton from './StartDiscussionButton';

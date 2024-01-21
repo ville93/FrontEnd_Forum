@@ -16,10 +16,6 @@ const NewDiscussion = ({ channels, onClose }) => {
   };
 
   const handleSubmit = () => {
-    // Tee toimenpiteet valitulla kanavalla ja muilla lomaketiedoilla
-    // ...
-
-    // Sulje popup-ikkuna
     onClose();
   };
 
