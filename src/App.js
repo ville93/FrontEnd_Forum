@@ -7,6 +7,7 @@ import NewDiscussion from './components/NewDiscussion';
 import ChannelPage from './components/ChannelPage';
 import DiscussionsBySearch from './components/DiscussionsBySearch';
 import Navbar from './components/Nabar';
+import Discussion from './components/Discussion';
 
 const customTheme = createTheme({
   palette: {
@@ -34,6 +35,7 @@ export default function App() {
           <Route path="/new-discussion" element={<NewDiscussion />} />
           <Route path="/channel/:channelId" element={<ChannelPage/>} />
           <Route path="/search-results/:searchTerm" element={<DiscussionsBySearch/>}/>
+          <Route path="/discussion/:discussionId" element={<Discussion/>}/>
         </Routes>
       </BrowserRouter>
     </ThemeProvider>

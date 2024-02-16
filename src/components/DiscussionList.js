@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { List, ListItem, Typography, Paper, Grid } from '@mui/material';
+import { List, ListItem, Typography, Paper, Grid, Link } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 const DiscussionList = ({ endpoint }) => {
   const [discussions, setDiscussions] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch(`https://localhost:5001${endpoint}`)
@@ -10,6 +12,11 @@ const DiscussionList = ({ endpoint }) => {
       .then(data => setDiscussions(data))
       .catch(error => console.error('Error fetching discussions:', error));
   }, [endpoint]);
+
+  const navigateToDiscussionPage = (discussionId) => {
+    console.log(discussionId)
+    navigate(`/discussion/${discussionId}`);
+  };
 
   return (
     <div>
@@ -30,7 +37,11 @@ const DiscussionList = ({ endpoint }) => {
             <Paper style={{ padding: '10px', background: '#313331', width: '100%' }}>
               <Grid container spacing={2} alignItems="center" style={{ marginLeft: 'auto', marginRight: 'auto' }}> 
                 <Grid item xs={8}>
-                  <Typography style={{ fontWeight: 'bold', color: '#4CAF50' }}>{discussion.title}</Typography>
+                  <Link onClick={() => navigateToDiscussionPage(discussion.id)}>
+                    <Typography style={{ fontWeight: 'bold', color: '#4CAF50' }}>
+                      {discussion.title}
+                    </Typography>
+                  </Link>
                   <Typography style={{ fontWeight: 'bold', color: '#ffffff' }}>{discussion.messages[0].content}</Typography>
                 </Grid>
                 <Grid item xs={2}>
