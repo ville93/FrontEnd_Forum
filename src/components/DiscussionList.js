@@ -78,7 +78,7 @@ const DiscussionList = ({ endpoint }) => {
                     <Typography
                       style={{ fontWeight: "bold", color: "#ffffff" }}
                     >
-                      {formatDate(discussion.messages[0].time)}
+                      {formatDate(discussion.messages[0].timestamp)}
                     </Typography>
                   )}
                 </Grid>
