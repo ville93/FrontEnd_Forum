@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { List, ListItem, Typography, Paper, Link } from "@mui/material";
+import { List, ListItem, Typography, Paper, Link, Grid } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import WorkIcon from "@mui/icons-material/Work";
 import BusinessIcon from "@mui/icons-material/Business";
@@ -64,15 +64,22 @@ const ChannelList = ({ onChannelsFetched }) => {
       <Typography>CHANNELS</Typography>
       <List>
         {channels.map((channel) => (
-          <ListItem key={channel.id}>
-            {getChannelIcon(channel.name)}
-            <Link
-              component="button"
-              variant="body1"
-              onClick={() => handleStartDiscussion(channel.id)}
-            >
-              <Typography>{channel.name}</Typography>
-            </Link>
+          <ListItem
+            key={channel.id}
+            style={{ display: "flex", alignItems: "center" }}
+          >
+            <Grid container alignItems="center" spacing={1}>
+              <Grid item>{getChannelIcon(channel.name)}</Grid>
+              <Grid item>
+                <Link
+                  component="button"
+                  variant="body1"
+                  onClick={() => handleStartDiscussion(channel.id)}
+                >
+                  <Typography>{channel.name}</Typography>
+                </Link>
+              </Grid>
+            </Grid>
           </ListItem>
         ))}
       </List>

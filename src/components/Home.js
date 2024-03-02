@@ -1,22 +1,22 @@
-import React, { useState } from 'react';
-import { Container, Box, Grid, Tabs, Tab, Paper } from '@mui/material';
-import ChannelList from './ChannelList';
-import DiscussionList from './DiscussionList';
-import StartDiscussionButton from './StartDiscussionButton';
-import NewDiscussion from './NewDiscussion'; 
+import React, { useState } from "react";
+import { Container, Box, Grid, Tabs, Tab, Paper } from "@mui/material";
+import ChannelList from "./ChannelList";
+import DiscussionList from "./DiscussionList";
+import StartDiscussionButton from "./StartDiscussionButton";
+import NewDiscussion from "./NewDiscussion";
 
 const Home = () => {
   const [tabValue, setTabValue] = useState(0);
   const [channelsForDiscussion, setChannelsForDiscussion] = useState([]);
-  const [isPopupOpen, setPopupOpen] = useState(false);  
+  const [isPopupOpen, setPopupOpen] = useState(false);
 
   const handleChange = (event, newValue) => {
     setTabValue(newValue);
   };
 
   const handleStartDiscussion = () => {
-    console.log('pop up call')
-    setPopupOpen(true);  
+    console.log("pop up call");
+    setPopupOpen(true);
   };
 
   const handleChannelsForDiscussionFetched = (channels) => {
@@ -24,15 +24,22 @@ const Home = () => {
   };
 
   const handleClosePopup = () => {
-    setPopupOpen(false);  
+    setPopupOpen(false);
   };
 
   return (
     <Container maxWidth={false} disableGutters>
       <Box mt={2}>
         <Grid container spacing={3}>
-          <Grid item xs={12} md={3} style={{ display: 'flex', justifyContent: 'left' }}>
-            <ChannelList onChannelsFetched={handleChannelsForDiscussionFetched} />
+          <Grid
+            item
+            xs={12}
+            md={2}
+            style={{ display: "flex", justifyContent: "left" }}
+          >
+            <ChannelList
+              onChannelsFetched={handleChannelsForDiscussionFetched}
+            />
           </Grid>
 
           <Grid item xs={12} md={9}>
@@ -52,7 +59,14 @@ const Home = () => {
               <Tab label="The Most Popular" />
             </Tabs>
 
-            <Paper elevation={3} style={{ marginTop: '10px', padding: '0px', background: '#000000' }}>
+            <Paper
+              elevation={3}
+              style={{
+                marginTop: "10px",
+                padding: "0px",
+                background: "#000000",
+              }}
+            >
               {tabValue === 0 && (
                 <div>
                   <DiscussionList endpoint="/api/Discussion/newest" />
