@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { List, ListItem, Typography, Paper, Link } from "@mui/material";
+import { List, ListItem, Typography, Paper, Link, Grid } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import ChannelList from "./ChannelList";
 
 const ChannelPage = () => {
   const { channelId } = useParams();
@@ -39,30 +40,39 @@ const ChannelPage = () => {
 
   return (
     <div>
-      <h2>{channel.name}</h2>
-      <List>
-        {channel.discussions.map((discussion) => (
-          <ListItem key={discussion.id}>
-            <Paper
-              style={{
-                marginTop: "10px",
-                padding: "10px",
-                background: "#313331",
-                width: "100%",
-              }}
-            >
-              <Link onClick={() => navigateToDiscussionPage(discussion.id)}>
-                <Typography style={{ fontWeight: "bold", color: "#4CAF50" }}>
-                  {discussion.title}
-                </Typography>
-              </Link>
-              {discussion.messages.map((message) => (
-                <Typography key={message.id}>{message.content}</Typography>
-              ))}
-            </Paper>
-          </ListItem>
-        ))}
-      </List>
+      <Grid container spacing={2}>
+        <Grid item xs={2}>
+          <ChannelList />
+        </Grid>
+        <Grid item xs={10}>
+          <h2>{channel.name}</h2>
+          <List>
+            {channel.discussions.map((discussion) => (
+              <ListItem key={discussion.id}>
+                <Paper
+                  style={{
+                    marginTop: "10px",
+                    padding: "10px",
+                    background: "#313331",
+                    width: "100%",
+                  }}
+                >
+                  <Link onClick={() => navigateToDiscussionPage(discussion.id)}>
+                    <Typography
+                      style={{ fontWeight: "bold", color: "#4CAF50" }}
+                    >
+                      {discussion.title}
+                    </Typography>
+                  </Link>
+                  {discussion.messages.map((message) => (
+                    <Typography key={message.id}>{message.content}</Typography>
+                  ))}
+                </Paper>
+              </ListItem>
+            ))}
+          </List>
+        </Grid>
+      </Grid>
     </div>
   );
 };

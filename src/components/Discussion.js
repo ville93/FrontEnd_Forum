@@ -9,6 +9,7 @@ import {
   Grid,
 } from "@mui/material";
 import { useParams } from "react-router-dom";
+import ChannelList from "./ChannelList";
 
 const Discussion = () => {
   const { discussionId } = useParams();
@@ -64,7 +65,10 @@ const Discussion = () => {
 
   return (
     <Grid container spacing={2}>
-      <Grid item xs={12}>
+      <Grid item xs={2}>
+        <ChannelList />
+      </Grid>
+      <Grid item xs={10}>
         <List style={{ margin: -10, marginTop: 5, marginBottom: 5 }}>
           {discussion.messages.map((message, index) => (
             <ListItem key={message.id}>
@@ -86,39 +90,27 @@ const Discussion = () => {
               </Paper>
             </ListItem>
           ))}
+          <ListItem>
+            <TextField
+              label="Your message"
+              variant="outlined"
+              value={newMessage}
+              onChange={(e) => setNewMessage(e.target.value)}
+              fullWidth
+              multiline
+              rows={4}
+            />
+          </ListItem>
+          <ListItem>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handleSendMessage}
+            >
+              Send
+            </Button>
+          </ListItem>
         </List>
-      </Grid>
-      <Grid item xs={12}>
-        <TextField
-          label="Your message"
-          variant="outlined"
-          value={newMessage}
-          onChange={(e) => setNewMessage(e.target.value)}
-          fullWidth
-          multiline
-          rows={4}
-          style={{
-            marginLeft: 5,
-            marginRight: 5,
-            marginTop: 0,
-            marginBottom: 0,
-          }}
-        />
-      </Grid>
-      <Grid item xs={12}>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={handleSendMessage}
-          style={{
-            marginLeft: 5,
-            marginRight: 5,
-            marginTop: 0,
-            marginBottom: 0,
-          }}
-        >
-          Send
-        </Button>
       </Grid>
     </Grid>
   );
