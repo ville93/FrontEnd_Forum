@@ -1,14 +1,47 @@
 import React, { useState } from "react";
-import { Container, Typography, TextField, Button, Grid } from "@mui/material";
+import {
+  Container,
+  Typography,
+  TextField,
+  Button,
+  Grid,
+  Alert,
+} from "@mui/material";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 
 const LogInPage = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const handleLogin = () => {
-    navigate("/home");
+    const loginInformation = {
+      email: username,
+      password: password,
+    };
+
+    fetch("https://localhost:5001/api/Auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(loginInformation),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Logging in failed");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        localStorage.setItem("token", data.token);
+        navigate("/home");
+      })
+      .catch((error) => {
+        setError("Invalid credentials");
+        console.error("Error logging in:", error);
+      });
   };
 
   return (
@@ -47,6 +80,13 @@ const LogInPage = () => {
               Login
             </Button>
           </Grid>
+          {error && (
+            <Grid item xs={12}>
+              <Alert severity="error" align="center" color="error">
+                {error}
+              </Alert>
+            </Grid>
+          )}
           <Grid item xs={12}>
             <Typography align="center">
               Don't have an account?{" "}
