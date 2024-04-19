@@ -9,6 +9,7 @@ import NewDiscussion from "./components/NewDiscussion";
 import ChannelPage from "./components/ChannelPage";
 import DiscussionsBySearch from "./components/DiscussionsBySearch";
 import Discussion from "./components/Discussion";
+import RegisterPage from "./components/RegisterPage";
 
 const customTheme = createTheme({
   palette: {
@@ -77,6 +78,7 @@ const App = () => {
               </>
             }
           />
+          <Route path="/register" element={<RegisterPage />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
